@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
  * @version 1.0
  * @time: 2015-12-25 下午1:08:25 
  * @fun:
+ * @fix: 修改加载失败后的中午显示
  */
 public class ProgressWebView extends LinearLayout {
 
@@ -34,7 +35,7 @@ public class ProgressWebView extends LinearLayout {
 	
 	private String url;
 	
-	private String errorHtml = "<html><body><h3><br><br><br><br><br> <div align='center'> page not found ! <br> welcome to use iHealthKeeper </div>   <h3></body></html>";
+	private String errorHtml = "<html><body><h3><br><br><br><br><br> <div align='center'> 找不到相关页面 </div> <h3></body></html>";
 	
 	public ProgressWebView(Context context) {
 		this(context, null);
@@ -83,7 +84,7 @@ public class ProgressWebView extends LinearLayout {
 		webSettings.setDefaultZoom(WebSettings.ZoomDensity.MEDIUM);
 		// 设置出现缩放工具
 		webSettings.setBuiltInZoomControls(false);
-		webSettings.setDefaultFontSize(20);
+		webSettings.setDefaultFontSize(16);
 		
 		mWebView.loadUrl(url);
 		
@@ -121,7 +122,7 @@ public class ProgressWebView extends LinearLayout {
 
 			@Override
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-				view.loadData(errorHtml, "text/html", "UTF-8");
+				view.loadData(errorHtml, "text/html; charset=UTF-8", null);
 				super.onReceivedError(view, errorCode, description, failingUrl);
 			}
 
