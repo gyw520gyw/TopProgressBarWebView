@@ -39,7 +39,7 @@ public class ProgressWebView extends LinearLayout {
 	
 	private String url;
 	
-	private String errorHtml = "<html><head><meta charset='UTF-8'></head><body><br><br><br><br><br><br><br><div align='center' style='font-size: smaller'  onclick='window.android.refresh()' ><a href='http://www.baidu.com' style='text-decoration: none'>暂无数据 <br/> 点击调用android方法 </a></div></body></html>";
+//	private String errorHtml = "<html><head><meta charset='UTF-8'></head><body><br><br><br><br><br><br><br><div align='center' style='font-size: smaller'  onclick='window.android.refresh()' ><a href='http://www.baidu.com' style='text-decoration: none'>暂无数据 <br/> 点击调用android方法 </a></div></body></html>";
 
 	@JavascriptInterface
 	public void refresh() {
@@ -75,12 +75,12 @@ public class ProgressWebView extends LinearLayout {
 		this.url = url;
 	}
 	
-	public void loadUrl(String url) {
-		if(url == null) {
-			url = "http://blog.csdn.net/gyw520gyw";
-		} 
-		initWebview(url);
-	}
+//	public void loadUrl(String url) {
+//		if(url == null) {
+//			url = "http://blog.csdn.net/gyw520gyw";
+//		}
+//		initWebview(url);
+//	}
 
 	
 	private void initWebview(String url) {
@@ -136,7 +136,7 @@ public class ProgressWebView extends LinearLayout {
 
 			@Override
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-				view.loadData(errorHtml, "text/html; charset=UTF-8", null);
+//				view.loadData(errorHtml, "text/html; charset=UTF-8", null);
 				super.onReceivedError(view, errorCode, description, failingUrl);
 			}
 
