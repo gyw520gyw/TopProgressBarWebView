@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -13,6 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import butterknife.Bind;
@@ -32,11 +34,19 @@ public class ProgressWebView extends LinearLayout {
 
 	@Bind(R.id.progress_bar)
 	ProgressBar mProgressBar;
+
+	private Context mContext;
 	
 	private String url;
 	
-	private String errorHtml = "<html><body><h3><br><br><br><br><br> <div align='center'> 找不到相关页面 </div> <h3></body></html>";
-	
+	private String errorHtml = "<html><head><meta charset='UTF-8'></head><body><br><br><br><br><br><br><br><div align='center' style='font-size: smaller'  onclick='window.android.refresh()' ><a href='http://www.baidu.com' style='text-decoration: none'>暂无数据 <br/> 点击调用android方法 </a></div></body></html>";
+
+	@JavascriptInterface
+	public void refresh() {
+		Toast.makeText(mContext, "js 调用方法", Toast.LENGTH_SHORT).show();
+	}
+
+
 	public ProgressWebView(Context context) {
 		this(context, null);
 	}
@@ -48,6 +58,7 @@ public class ProgressWebView extends LinearLayout {
 
 	public ProgressWebView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		this.mContext = context;
 		initView(context);
 	}
 
@@ -73,6 +84,9 @@ public class ProgressWebView extends LinearLayout {
 
 	
 	private void initWebview(String url) {
+
+		mWebView.addJavascriptInterface(this, "android");
+
 		WebSettings webSettings = mWebView.getSettings();
 
 		webSettings.setJavaScriptEnabled(true);
