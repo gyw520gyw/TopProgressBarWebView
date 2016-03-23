@@ -41,10 +41,10 @@ public class ProgressWebView extends LinearLayout {
 	
 //	private String errorHtml = "<html><head><meta charset='UTF-8'></head><body><br><br><br><br><br><br><br><div align='center' style='font-size: smaller'  onclick='window.android.refresh()' ><a href='http://www.baidu.com' style='text-decoration: none'>暂无数据 <br/> 点击调用android方法 </a></div></body></html>";
 
-	@JavascriptInterface
-	public void refresh() {
-		Toast.makeText(mContext, "js 调用方法", Toast.LENGTH_SHORT).show();
-	}
+//	@JavascriptInterface
+//	public void refresh() {
+//		Toast.makeText(mContext, "js 调用方法", Toast.LENGTH_SHORT).show();
+//	}
 
 
 	public ProgressWebView(Context context) {
@@ -75,12 +75,12 @@ public class ProgressWebView extends LinearLayout {
 		this.url = url;
 	}
 	
-//	public void loadUrl(String url) {
-//		if(url == null) {
-//			url = "http://blog.csdn.net/gyw520gyw";
-//		}
-//		initWebview(url);
-//	}
+	public void loadUrl(String url) {
+		if(url == null) {
+			url = "http://blog.csdn.net/gyw520gyw";
+		}
+		initWebview(url);
+	}
 
 	
 	private void initWebview(String url) {
